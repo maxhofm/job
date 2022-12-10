@@ -2,23 +2,23 @@
 
 Устанавливаем Yii2-advanced шаблон:
 
-- composer create-project --prefer-dist yiisoft/yii2-app-advanced yii-application
+-       composer create-project --prefer-dist yiisoft/yii2-app-advanced yii-application
 
 
 Инициализируем приложение:
 
-- /path/to/php-bin/php /path/to/yii-application/init
+-       /path/to/php-bin/php /path/to/yii-application/init
 
 
 Создаем БД, настраиваем @common/config/main.php
 
 Накатываем миграции:
 
-- php yii migrate
+-       php yii migrate
 
 Настраиваем nginx:
-
-- server {
+  
+    server {
         charset utf-8;
         client_max_body_size 128M;
 
@@ -59,9 +59,10 @@
         location ~* /\. {
             deny all;
         }
-  }
+      }
 
-  server {
+  
+    server {
         charset utf-8;
         client_max_body_size 128M;
 
@@ -102,22 +103,26 @@
         location ~* /\. {
             deny all;
         }
-  }
+     }
 
 Для получения токена доступа к API необходимо выполнить команду:
 
-- php yii cron/get-token api password
+-       php yii cron/get-token api password
 
 Токен необходимо использовать в заголовке Authorization: Bearer {api_token}
 
 Запрос к API производится по роуту {front-host}/api/send-json
+
 При GET-запросе данные необходимо передать через параметр data
+
 При POST-запросе нужно просто отправить валидный JSON указав заголовок Content-Type: application/json
 
 -----------------------------------------------------
 
 Для тестов необзодимо выполнить следующие команды
 
-- composer require --dev codeception/module-yii2
-- codecept build
-- codecept run
+-       composer require --dev codeception/module-yii2
+ 
+-       codecept build
+  
+-       codecept run
