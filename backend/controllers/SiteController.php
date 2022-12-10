@@ -4,6 +4,7 @@ namespace backend\controllers;
 
 use common\models\LoginForm;
 use Yii;
+use yii\helpers\Url;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -62,6 +63,9 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+        if (!Yii::$app->user->isGuest) {
+            $this->redirect(Url::toRoute('json-data/index'));
+        }
         return $this->render('index');
     }
 

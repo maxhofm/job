@@ -2,6 +2,8 @@
 
 namespace common\models;
 
+use yii\helpers\Html;
+
 /**
  * This is the model class for table "jsondata".
  *
@@ -39,4 +41,5 @@ class JsonData extends \yii\db\ActiveRecord
             'data' => 'Data',
         ];
     }
+
 }
