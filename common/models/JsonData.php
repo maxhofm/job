@@ -47,6 +47,13 @@ class JsonData extends \yii\db\ActiveRecord
         ];
     }
 
+    /**
+     * Валодатор json
+     * @param $attribute
+     * @param $params
+     * @param $validator
+     * @return void
+     */
     public function validateJson($attribute, $params, $validator)
     {
         if ( is_string( $this->$attribute ) ) {
