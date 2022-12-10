@@ -10,12 +10,14 @@ class CronController extends Controller
 {
     public function actionGetToken($login, $password)
     {
-        echo $login;
-        echo $password;
-
         $user = User::findByUsername($login);
         if ($user->validatePassword($password)) {
-            echo 'Ваш токен доступа к API: ' . $user->generateApiToken();
+            $token = $user->generateApiToken();
+            if (!empty($token) && $user->save()) {
+                echo 'Ваш токен доступа к API: ' . $token;
+            } else {
+                echo 'Не удалось создать токен для пользователя. Обратитесь к администратору';
+            }
         } else {
             echo 'Неверный логин или пароль';
         }
