@@ -1,0 +1,17 @@
+suite_namespace: frontend\tests\acceptance
+actor: AcceptanceTester
+modules:
+    enabled:
+        - WebDriver:
+            url: http://localhost:8080
+            browser: firefox
+        - Yii2:
+            part: init
+        - REST:
+              depends: PhpBrowser
+              url: &url 'https://frontend.com/api/'
+    config:
+           PhpBrowser:
+               url: *url
+               headers:
+                   Content-Type: application/json

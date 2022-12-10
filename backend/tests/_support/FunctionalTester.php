@@ -2,6 +2,8 @@
 
 namespace backend\tests;
 
+use common\models\User;
+
 /**
  * Inherited Methods
  * @method void wantToTest($text)

@@ -56,9 +56,12 @@ class JsonData extends \yii\db\ActiveRecord
      */
     public function validateJson($attribute, $params, $validator)
     {
-        if ( is_string( $this->$attribute ) ) {
+        if (is_string($this->$attribute)) {
             try {
                 $this->$attribute = Json::decode($this->$attribute);
+                if (!is_array($this->$attribute) || !is_object($this->$attribute)) {
+                    $this->addError('data', "Неверный формат");
+                }
             } catch (InvalidArgumentException $e) {
                 $this->$attribute = $this->getOldAttribute($attribute);
                 $this->addError('data', $e->getMessage());

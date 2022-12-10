@@ -10,7 +10,7 @@ use yii\widgets\ActiveForm;
 
 <div class="json-data-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['id' => '#jsonDataEditForm']); ?>
 
     <?= $form->field($model, 'data')->textarea(['rows' => 10, 'id' => 'jsonTextArea']) ?>
 

@@ -9,17 +9,12 @@ use yii\grid\GridView;
 /** @var yii\web\View $this */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Json Datas';
+$this->title = 'Json Data';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="json-data-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>
-        <?= Html::a('Create Json Data', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
