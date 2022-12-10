@@ -24,7 +24,7 @@ class RecursiveListWidget extends Widget
             if (is_array($child)) {
                 $childCnt = count($child);
                 echo "<li'> {$key} [{$childCnt}]";
-                echo Html::button('+', ['class' => 'toogle-list-btn']);
+                echo Html::button('+', ['class' => 'toogle-list-btn btn btn-primary']);
                 echo self::widget(['data' => $child]);
                 echo "</li>";
             } else {
