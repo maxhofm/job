@@ -196,9 +196,9 @@ class User extends ActiveRecord implements IdentityInterface
     /**
      * Generates "remember me" authentication key
      */
-    public function generateApiToken()
+    public function generateApiToken($min)
     {
-        $this->api_token_expire = strtotime('+60 min');
+        $this->api_token_expire = strtotime("+{$min} min");
         return $this->api_token = Yii::$app->security->generateRandomString();
     }
 

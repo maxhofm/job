@@ -12,7 +12,7 @@ class CronController extends Controller
     {
         $user = User::findByUsername($login);
         if ($user->validatePassword($password)) {
-            $token = $user->generateApiToken();
+            $token = $user->generateApiToken(5);
             if (!empty($token) && $user->save()) {
                 echo 'Ваш токен доступа к API: ' . $token;
             } else {
