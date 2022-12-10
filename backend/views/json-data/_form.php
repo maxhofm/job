@@ -12,7 +12,9 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'data')->textInput() ?>
+    <?= $form->field($model, 'data')->textarea(['rows' => 10, 'id' => 'jsonTextArea']) ?>
+
+    <br>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

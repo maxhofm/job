@@ -33,12 +33,4 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= RecursiveListWidget::widget(['data' => $model->data]) ?>
 
-<!--    --><?php //= $this->render('_listItem', [
-//        'data' => $model->data,
-//    ]) ?>
-
-<!--    --><?php
-//        JsonData::eachChild($model->data);
-//    ?>
-
 </div>

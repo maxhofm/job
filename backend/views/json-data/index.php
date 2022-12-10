@@ -25,9 +25,13 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
             'id',
-            'data',
+            [
+                'attribute' => 'data',
+                'value' => function ($model, $key, $index, $column) {
+                    return \yii\helpers\Json::htmlEncode($model->data);
+                }
+            ],
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, JsonData $model, $key, $index, $column) {

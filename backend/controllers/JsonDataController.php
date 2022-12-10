@@ -6,6 +6,7 @@ use common\models\JsonData;
 use common\models\User;
 use yii\data\ActiveDataProvider;
 use yii\debug\models\timeline\DataProvider;
+use yii\helpers\Json;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -42,16 +43,14 @@ class JsonDataController extends Controller
     {
         $dataProvider = new ActiveDataProvider([
             'query' => JsonData::find(),
-            /*
             'pagination' => [
-                'pageSize' => 50
+                'pageSize' => 20
             ],
             'sort' => [
                 'defaultOrder' => [
                     'id' => SORT_DESC,
                 ]
             ],
-            */
         ]);
 
         return $this->render('index', [
@@ -69,41 +68,7 @@ class JsonDataController extends Controller
     {
         $model = $this->findModel($id);
 
-        $data = $model->data;
-
-        ;
-        $listDataProvider = new ActiveDataProvider([
-           'query' => JsonData::find(),
-        ]);
-
-
-
-//        self::eachChild($data);
-
         return $this->render('view', [
-            'model' => $model,
-            'listDataProvider' => $listDataProvider,
-        ]);
-    }
-
-    /**
-     * Creates a new JsonData model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return string|\yii\web\Response
-     */
-    public function actionCreate()
-    {
-        $model = new JsonData();
-
-        if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
-            }
-        } else {
-            $model->loadDefaultValues();
-        }
-
-        return $this->render('create', [
             'model' => $model,
         ]);
     }
@@ -123,6 +88,7 @@ class JsonDataController extends Controller
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
+        $model->data = Json::encode($model->data);
         return $this->render('update', [
             'model' => $model,
         ]);

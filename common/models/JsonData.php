@@ -2,7 +2,10 @@
 
 namespace common\models;
 
+use Exception;
+use yii\base\InvalidArgumentException;
 use yii\helpers\Html;
+use yii\helpers\Json;
 
 /**
  * This is the model class for table "jsondata".
@@ -27,7 +30,9 @@ class JsonData extends \yii\db\ActiveRecord
     {
         return [
             [['data'], 'required'],
+            [['data'], 'trim'],
             [['data'], 'safe'],
+            [['data'], 'validateJson'],
         ];
     }
 
@@ -40,6 +45,18 @@ class JsonData extends \yii\db\ActiveRecord
             'id' => 'ID',
             'data' => 'Data',
         ];
+    }
+
+    public function validateJson($attribute, $params, $validator)
+    {
+        if ( is_string( $this->$attribute ) ) {
+            try {
+                $this->$attribute = Json::decode($this->$attribute);
+            } catch (InvalidArgumentException $e) {
+                $this->$attribute = $this->getOldAttribute($attribute);
+                $this->addError('data', $e->getMessage());
+            }
+        }
     }
 
 }

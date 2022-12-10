@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /** @var common\models\JsonData $model */
 
 $this->title = 'Update Json Data: ' . $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Json Datas', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Json Data', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>
